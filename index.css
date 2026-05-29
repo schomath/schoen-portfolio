@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+:root {
+  color: #1f1a17;
+  background-color: #efe7dc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: #efe7dc;
+}
+
 button, a, [role="button"] {
   @apply transition-all duration-300;
 }
