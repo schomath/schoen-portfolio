@@ -2,7 +2,7 @@
 
 :root {
   color: #1f1a17;
-  background-color: #efe7dc;
+  background-color: #2f3339;
 }
 
 html {
@@ -12,7 +12,137 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background-color: #efe7dc;
+  background-color: #2f3339;
+}
+
+.portfolio-page-bg {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(160deg, #2d3238 0%, #272b31 48%, #24292f 100%);
+}
+
+.hero-scroll-card,
+.cards-pop-zone {
+  transform-origin: center top;
+  will-change: transform, filter, opacity;
+  transition: transform 70ms linear, filter 70ms linear, opacity 70ms linear;
+}
+
+.hero-scroll-card {
+  backface-visibility: hidden;
+}
+
+.cards-pop-zone {
+  position: relative;
+  z-index: 3;
+}
+
+.floating-equation {
+  position: absolute;
+  top: 112%;
+  color: rgba(227, 235, 242, 0.4);
+  font-size: var(--size, 0.95rem);
+  font-family: "Cambria Math", "Times New Roman", serif;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  text-shadow: 0 0 14px rgba(128, 163, 189, 0.22);
+  animation-name: equation-float;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.sine-wave {
+  position: absolute;
+  left: -40%;
+  width: 180%;
+  height: 10rem;
+  overflow: visible;
+  animation-name: wave-slide;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.sine-wave-path {
+  fill: none;
+  stroke: rgba(166, 197, 219, 0.62);
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 14px rgba(128, 163, 189, 0.25));
+}
+
+.floating-image {
+  position: absolute;
+  top: 108%;
+  width: clamp(2.6rem, 4vw, 4rem);
+  aspect-ratio: 1;
+  border-radius: 0.8rem;
+  object-fit: cover;
+  opacity: 0;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.34);
+  animation-name: image-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes equation-float {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(-5deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.35;
+  }
+  52% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate3d(var(--drift, 36px), -132vh, 0) rotate(10deg);
+    opacity: 0;
+  }
+}
+
+@keyframes wave-slide {
+  0% {
+    transform: translateX(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(4%) scaleY(1.08);
+  }
+  100% {
+    transform: translateX(-4%) scaleY(1);
+  }
+}
+
+@keyframes image-float {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.92) rotate(-6deg);
+    opacity: 0;
+  }
+  16% {
+    opacity: 0.32;
+  }
+  55% {
+    opacity: 0.58;
+  }
+  100% {
+    transform: translate3d(28px, -122vh, 0) scale(1.08) rotate(8deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .sine-wave {
+    height: 7rem;
+  }
+
+  .floating-equation {
+    font-size: calc(var(--size, 0.95rem) * 0.9);
+    opacity: 0.28;
+  }
+
+  .hero-scroll-card,
+  .cards-pop-zone {
+    transition-duration: 80ms;
+  }
 }
 
 button, a, [role="button"] {
