@@ -64,54 +64,63 @@ const linkCards = [
 
 const curriculumClasses = [
   {
-    title: 'Class 01',
+    courseID: 'ETEC 150',
+    title: 'Applied Technical Math',
     image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80',
     description:
       'Use this space for a short summary of the class, its goals, major assignments, and the teaching approach you used.',
   },
   {
-    title: 'Class 02',
+    courseID: 'ETEC 141',
+    title: 'Microcontrollers and Sensors',
     image: 'https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1200&q=80',
     description:
       'Add a concise explanation of the curriculum structure, assessment design, or any important revisions for this class.',
   },
   {
-    title: 'Class 03',
+    courseID: 'ETEC 140',
+    title: 'PLCs and Automation',
     image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
     description:
       'Reserve this section for a class narrative, evidence of student work, or notes about the learning outcomes.',
   },
   {
+    courseID: 'ETEC 139',
     title: 'Class 04',
     image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80',
     description:
       'Describe the instructional design choices you made and include supporting images or artifacts underneath.',
   },
   {
+    courseID: 'ETEC 138',
     title: 'Class 05',
     image: 'https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=1200&q=80',
     description:
       'Use this panel for a class-by-class reflection, including what changed, why it changed, and what improved.',
   },
   {
+    courseID: 'ETEC 137',
     title: 'Class 06',
     image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
     description:
       'Add curriculum notes, assessment samples, handouts, or any other material that supports the class overview.',
   },
   {
+    courseID: 'ETEC 136',
     title: 'Class 07',
     image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80',
     description:
       'Keep room here for a narrative about sequencing, lesson planning, collaboration, or student engagement.',
   },
   {
+    courseID: 'ETEC 135',
     title: 'Class 08',
     image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80',
     description:
       'Use the lower part of the card for additional images, screenshots, or curriculum evidence connected to this class.',
   },
   {
+    courseID: 'ETEC 134',
     title: 'Class 09',
     image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80',
     description:
@@ -365,20 +374,20 @@ function CurriculumDevelopmentPage({ details }: { details: PageDetails }) {
       <section className="flex flex-col gap-6">
         {curriculumClasses.map((classCard) => (
           <article
-            key={classCard.title}
+            key={classCard.courseID}
             className="overflow-hidden rounded-[1.75rem] bg-white/80 shadow-[0_18px_50px_rgba(31,26,23,0.1)] backdrop-blur-sm"
           >
             <img
               src={classCard.image}
-              alt={`${classCard.title} preview`}
+              alt={`${classCard.courseID} preview`}
               className="block h-36 w-full object-cover sm:h-40 lg:h-44"
               loading="lazy"
             />
 
             <div className="space-y-4 px-5 py-5 sm:px-6 sm:py-6">
               <div>
-                <p className="text-xs uppercase tracking-[0.32em] text-black/40">{classCard.title}</p>
-                <h2 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-[#1f1a17]">Class title goes here</h2>
+                <p className="text-xs uppercase tracking-[0.32em] text-black/40">{classCard.courseID}</p>
+                <h2 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-[#1f1a17]">{classCard.title}</h2>
               </div>
 
               <p className="text-sm leading-6 text-black/65">{classCard.description}</p>
