@@ -62,6 +62,63 @@ const linkCards = [
   },
 ] as const;
 
+const curriculumClasses = [
+  {
+    title: 'Class 01',
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80',
+    description:
+      'Use this space for a short summary of the class, its goals, major assignments, and the teaching approach you used.',
+  },
+  {
+    title: 'Class 02',
+    image: 'https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1200&q=80',
+    description:
+      'Add a concise explanation of the curriculum structure, assessment design, or any important revisions for this class.',
+  },
+  {
+    title: 'Class 03',
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
+    description:
+      'Reserve this section for a class narrative, evidence of student work, or notes about the learning outcomes.',
+  },
+  {
+    title: 'Class 04',
+    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80',
+    description:
+      'Describe the instructional design choices you made and include supporting images or artifacts underneath.',
+  },
+  {
+    title: 'Class 05',
+    image: 'https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=1200&q=80',
+    description:
+      'Use this panel for a class-by-class reflection, including what changed, why it changed, and what improved.',
+  },
+  {
+    title: 'Class 06',
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+    description:
+      'Add curriculum notes, assessment samples, handouts, or any other material that supports the class overview.',
+  },
+  {
+    title: 'Class 07',
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80',
+    description:
+      'Keep room here for a narrative about sequencing, lesson planning, collaboration, or student engagement.',
+  },
+  {
+    title: 'Class 08',
+    image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80',
+    description:
+      'Use the lower part of the card for additional images, screenshots, or curriculum evidence connected to this class.',
+  },
+  {
+    title: 'Class 09',
+    image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80',
+    description:
+      'Add the final class summary here, along with any supporting visuals and documentation you want to highlight.',
+  },
+] as const;
+
 const equationParticles = [
   { text: 'f(x)=x^2', x: '7%', duration: '26s', delay: '-7s', drift: '-60px', size: '0.95rem' },
   { text: 'e^(i*pi)+1=0', x: '17%', duration: '31s', delay: '-18s', drift: '45px', size: '1rem' },
@@ -97,10 +154,6 @@ function getCurrentPage(): PageKey {
   }
 
   return 'home';
-}
-
-function scrollToLinks() {
-  document.getElementById('portfolio-links')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function AnimatedBackground() {
@@ -164,45 +217,10 @@ function AnimatedBackground() {
 }
 
 function HomePage() {
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const maxDistance = Math.max(window.innerHeight * 0.18, 90);
-      const progress = Math.min(window.scrollY / maxDistance, 1);
-      setScrollProgress(progress);
-    };
-
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-    };
-  }, []);
-
-  const dramaticProgress = 1 - Math.pow(1 - scrollProgress, 3.2);
-
-  const heroScale = 1 - dramaticProgress * 0.34;
-  const heroBlur = dramaticProgress * 18;
-  const heroOpacity = 1 - dramaticProgress * 0.9;
-
-  const cardsTranslateY = (1 - dramaticProgress) * 140;
-  const cardsScale = 0.74 + dramaticProgress * 0.26;
-  const cardsBlur = Math.max(0, (1 - dramaticProgress) * 16);
-  const cardsOpacity = 0.04 + dramaticProgress * 0.96;
-
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-8 px-6 py-8 sm:px-10 lg:px-12">
+    <main className="mx-auto flex min-h-screen w-full max-w-8xl flex-col gap-8 px-6 py-8 sm:px-10 lg:px-12">
       <section
-        className="hero-scroll-card sticky top-24 z-[1] overflow-hidden rounded-[2rem] border border-black/5 bg-[#f8f5ef] shadow-[0_24px_80px_rgba(38,27,18,0.08)]"
-        style={{
-          transform: `scale(${heroScale})`,
-          filter: `blur(${heroBlur}px) saturate(${1 - dramaticProgress * 0.32})`,
-          opacity: heroOpacity,
-        }}
+        className="overflow-hidden rounded-[2rem] border border-black/5 bg-[#f8f5ef] shadow-[0_24px_80px_rgba(38,27,18,0.08)]"
       >
         <div className="grid gap-10 px-6 py-8 sm:px-10 sm:py-12 lg:grid-cols-[1.3fr_0.9fr] lg:px-14 lg:py-16">
           <div className="flex flex-col justify-between gap-10">
@@ -212,111 +230,44 @@ function HomePage() {
                 <h1 className="max-w-3xl text-5xl font-semibold tracking-[-0.04em] text-[#1f1a17] sm:text-6xl lg:text-7xl">
                   Mathias A. Schoen Tenure Track Teaching Portfolio
                 </h1>
-                <p className="max-w-2xl text-base leading-7 text-black/65 sm:text-lg">
-                  Hello and welcome! My name is Mathias, a mechatronics and engineering teacher with a passion for demonstrating the beautiful dances of technology and mathematics. This portfolio serves as a reflection of a longstanding dream I have had to create to share 
+                <p className="max-w-3xl text-base leading-7 text-black/65 sm:text-lg">
+                  Hello and welcome! My name is Mathias Schoen, a <strong>mechatronics</strong>, <strong>robotics</strong>, and <strong>AI</strong> teacher with a passion for demonstrating the dances of technology and mathematics. This portfolio serves as a reflection of a longstanding dream of mine to not just learn fascinating engineering concepts, but to find clever and inspiring ways to teach these topics to those who would come after me.
                 </p>
+                <p className="max-w-3x1 text-base leading-7 text-black/65 sm:text-lg">
+                  Below, you will find a link to my <strong>curriculum vitae</strong>, giving a broad overview of my professional background and achievements, followed by four categories highlighting my various contributions to teaching and learning at Edmonds College, including <strong>curriculum development, mentoring, outreach, and more</strong>. Each section is designed to provide a comprehensive view of my teaching philosophy, practices, and impact.
+                </p>
+                <a
+                  href="#/cv"
+                  className="inline-flex rounded-full border border-black/15 bg-white/65 px-5 py-2.5 text-sm font-medium text-[#1f1a17] transition-all hover:-translate-y-0.5 hover:border-black/30 hover:bg-white"
+                >
+                  Open CV
+                </a>
               </div>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-4">
-              <button
-                type="button"
-                onClick={scrollToLinks}
-                className="rounded-full bg-[#1f1a17] px-6 py-3 text-sm font-medium text-white hover:-translate-y-0.5 hover:bg-black"
-              >
-                Explore portfolio sections
-              </button>
-              <a
-                href="#/cv"
-                className="rounded-full border border-black/10 px-6 py-3 text-sm font-medium text-[#1f1a17] hover:-translate-y-0.5 hover:border-black/25 hover:bg-white/70"
-              >
-                Open CV page
-              </a>
             </div>
           </div>
 
           <div className="grid gap-4 rounded-[1.75rem] bg-[#ebe4db] p-4 sm:grid-cols-2 lg:grid-cols-1">
             <article className="rounded-[1.5rem] bg-[#1f1a17] p-6 text-white">
               <p className="text-xs uppercase tracking-[0.3em] text-white/55">Focus</p>
-              <h2 className="mt-4 text-2xl font-semibold tracking-[-0.03em]">Student-centered, evidence-based teaching</h2>
+              <h2 className="mt-4 text-2xl font-semibold tracking-[-0.03em]">Mechatronics, Robotics, AI, and Automation</h2>
               <p className="mt-4 text-sm leading-6 text-white/70">
-                Use this space to foreground a clear philosophy and show how reflection shapes course design, classroom culture,
-                and assessment.
+                Modern industry demands not only a variety of skills, but the ability to learn new knowledge from the ground up. My teaching centers not only around the core concepts within these disciplines, but around the methodology of learning new topics as they emerge.
               </p>
             </article>
             <article className="rounded-[1.5rem] bg-white/75 p-6 backdrop-blur-sm">
-              <p className="text-xs uppercase tracking-[0.3em] text-black/40">Structure</p>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-black/65">
-                <li>Selected highlights and guiding themes</li>
-                <li>Curated supporting documents and portfolio pages</li>
-                <li>Room to expand the narrative over time</li>
-              </ul>
+              <p className="text-xs uppercase tracking-[0.3em] text-black/70">Teaching Philosophy</p>
+              <p className="mt-4 text-sm leading-6 text-black/70">As the mechatronics and engineering fields continue to evolve, it is essential that my students are not the only ones actively learning - my teaching philosophy emphasizes continuous and joint learning by providing students with a strong foundation in the basics of engineering and technology, then guiding them to explore advanced topics and real-world applications alongside their teacher.</p>
+              <p className="mt-4 text-sm leading-6 text-black/70">By learning alongside their teacher, students often feel more comfortable taking risks, asking questions, and engaging deeply with the material,. Not to mention, teamwork, communication, and problem-solving skills are naturally developed in this collaborative environment.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <button
-        type="button"
-        onClick={scrollToLinks}
-        className="mx-auto -mt-2 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/8 px-4 py-2 text-xs uppercase tracking-[0.28em] text-white/80 hover:-translate-y-0.5 hover:border-white/55 hover:bg-white/14"
-      >
-        <span>Scroll for more</span>
-        <svg
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          className="h-4 w-4 animate-[bounce_1.2s_ease-in-out_infinite]"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.8"
-        >
-          <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
-
-      {/* <section className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
-        <article className="rounded-[2rem] border border-black/5 bg-white/70 p-8 shadow-[0_20px_60px_rgba(38,27,18,0.06)]">
-          <p className="text-sm uppercase tracking-[0.32em] text-black/45">Overview</p>
-          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.03em] text-[#1f1a17]">A homepage built like a curated studio profile.</h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-black/65">
-            The composition mirrors a contemporary Framer portfolio: oversized typography, softened neutral tones, asymmetric
-            cards, and a measured rhythm between narrative content and navigation. It is ready to become a tenure or teaching dossier.
-          </p>
-        </article>
-
-        <article className="rounded-[2rem] border border-black/5 bg-[#e7ddd2] p-8 shadow-[0_20px_60px_rgba(38,27,18,0.06)]">
-          <p className="text-sm uppercase tracking-[0.32em] text-black/45">Intent</p>
-          <p className="mt-4 text-lg leading-8 text-[#1f1a17]">
-            Clear hierarchy, tactile cards, and restrained motion keep the experience polished while leaving the focus on your work.
-          </p>
-        </article>
-      </section>
-
-      <section className="grid gap-4 md:grid-cols-3">
-        {homepageHighlights.map((highlight) => (
-          <article
-            key={highlight.title}
-            className="rounded-[1.75rem] border border-black/5 bg-white/80 p-6 shadow-[0_16px_40px_rgba(38,27,18,0.05)]"
-          >
-            <p className="text-xs uppercase tracking-[0.3em] text-black/40">Highlight</p>
-            <h3 className="mt-4 text-2xl font-semibold tracking-[-0.03em] text-[#1f1a17]">{highlight.title}</h3>
-            <p className="mt-3 text-sm leading-6 text-black/65">{highlight.text}</p>
-          </article>
-        ))}
-      </section>
-
-      */}
-
       <section
         id="portfolio-links"
-        className="cards-pop-zone px-2 py-2 sm:px-4 sm:py-4"
-        style={{
-          transform: `translate3d(0, ${cardsTranslateY}px, 0) scale(${cardsScale})`,
-          filter: `blur(${cardsBlur}px)`,
-          opacity: cardsOpacity,
-        }}
+        className="px-2 py-2 sm:px-4 sm:py-4"
       >
-        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {linkCards.map((card) => (
             <a
               key={card.key}
@@ -354,6 +305,10 @@ function HomePage() {
 function DetailPage({ page }: { page: Exclude<PageKey, 'home'> }) {
   const details = pageDetails[page];
 
+  if (page === 'curriculum-development') {
+    return <CurriculumDevelopmentPage details={details} />;
+  }
+
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-4xl flex-col justify-center px-6 py-10 sm:px-10 lg:px-12">
       <section className="rounded-[2rem] border border-black/5 bg-[#f8f5ef] p-8 shadow-[0_24px_80px_rgba(38,27,18,0.08)] sm:p-12">
@@ -379,6 +334,71 @@ function DetailPage({ page }: { page: Exclude<PageKey, 'home'> }) {
   );
 }
 
+function CurriculumDevelopmentPage({ details }: { details: PageDetails }) {
+  return (
+    <main className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-8 px-6 py-10 sm:px-10 lg:px-12">
+      <section className="overflow-hidden rounded-[2rem] bg-[#f8f5ef] shadow-[0_24px_80px_rgba(38,27,18,0.08)]">
+        <div className="grid gap-8 px-6 py-8 sm:px-10 sm:py-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:px-12 lg:py-12">
+          <div className="space-y-5">
+            <p className="text-sm uppercase tracking-[0.35em] text-black/45">{details.eyebrow}</p>
+            <div className="space-y-4">
+              <h1 className="text-4xl font-semibold tracking-[-0.04em] text-[#1f1a17] sm:text-5xl lg:text-6xl">
+                {details.title}
+              </h1>
+              <p className="max-w-3xl text-base leading-7 text-black/65 sm:text-lg">
+                {details.description}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex lg:justify-end">
+            <a
+              href="#/"
+              className="inline-flex w-fit items-center rounded-full border border-black/10 bg-white/75 px-5 py-2.5 text-sm font-medium text-[#1f1a17] hover:-translate-y-0.5 hover:border-black/25 hover:bg-white"
+            >
+              ← Back to home
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="flex flex-col gap-6">
+        {curriculumClasses.map((classCard) => (
+          <article
+            key={classCard.title}
+            className="overflow-hidden rounded-[1.75rem] bg-white/80 shadow-[0_18px_50px_rgba(31,26,23,0.1)] backdrop-blur-sm"
+          >
+            <img
+              src={classCard.image}
+              alt={`${classCard.title} preview`}
+              className="block h-36 w-full object-cover sm:h-40 lg:h-44"
+              loading="lazy"
+            />
+
+            <div className="space-y-4 px-5 py-5 sm:px-6 sm:py-6">
+              <div>
+                <p className="text-xs uppercase tracking-[0.32em] text-black/40">{classCard.title}</p>
+                <h2 className="mt-3 text-xl font-semibold tracking-[-0.03em] text-[#1f1a17]">Class title goes here</h2>
+              </div>
+
+              <p className="text-sm leading-6 text-black/65">{classCard.description}</p>
+
+              <div className="grid grid-cols-2 gap-3 pt-2">
+                <div className="min-h-24 rounded-[1.1rem] bg-[#f4eee6] px-3 py-3 text-xs leading-5 text-black/45">
+                  Add a short description, standards, or lesson notes here.
+                </div>
+                <div className="min-h-24 rounded-[1.1rem] bg-[#f4eee6] px-3 py-3 text-xs leading-5 text-black/45">
+                  Reserve this space for supporting images, handouts, or examples.
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </section>
+    </main>
+  );
+}
+
 export default function App() {
   const [page, setPage] = useState<PageKey>(() => getCurrentPage());
 
@@ -396,18 +416,6 @@ export default function App() {
       <AnimatedBackground />
 
       <div className="relative z-10">
-        <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 pb-2 pt-6 sm:px-10 lg:px-12">
-          <a href="#/" className="text-sm font-semibold uppercase tracking-[0.35em] text-white/70 hover:text-white">
-            Portfolio
-          </a>
-          <a
-            href={page === 'home' ? '#/cv' : '#/'}
-            className="rounded-full border border-white/25 bg-white/5 px-4 py-2 text-sm font-medium text-white/85 hover:-translate-y-0.5 hover:border-white/45 hover:bg-white/12"
-          >
-            {page === 'home' ? 'Open CV' : 'Return home'}
-          </a>
-        </header>
-
         {page === 'home' ? <HomePage /> : <DetailPage page={page} />}
       </div>
     </div>
