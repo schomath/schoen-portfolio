@@ -8,6 +8,8 @@ type PageDetails = {
   description: string;
 };
 
+const localImage = (fileName: string) => `${import.meta.env.BASE_URL}images/${fileName}`;
+
 const pageDetails: Record<Exclude<PageKey, 'home'>, PageDetails> = {
   cv: {
     eyebrow: 'Professional Record',
@@ -36,29 +38,25 @@ const linkCards = [
     key: 'cv',
     label: 'CV',
     summary: 'Academic appointments, publications, teaching history, and service in one place.',
-    image:
-      'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=900&q=80',
+    image: localImage('cv-card.jpg'),
   },
   {
     key: 'curriculum-development',
     label: 'Curriculum Development',
     summary: 'Course design, assessment planning, and evidence of reflective iteration.',
-    image:
-      'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=900&q=80',
+    image: localImage('curriculum-development-card.jpg'),
   },
   {
     key: 'beyond-the-classroom',
     label: 'Beyond the Classroom',
     summary: 'Mentoring, leadership, outreach, and the broader impact of your work.',
-    image:
-      'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80',
+    image: localImage('beyond-the-classroom-card.jpg'),
   },
   {
     key: 'letters-of-support',
     label: 'Letters of Support',
     summary: 'Testimonials and letters that affirm teaching excellence and collaboration.',
-    image:
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80',
+    image: localImage('letters-of-support-card.jpg'),
   },
 ] as const;
 
@@ -66,63 +64,63 @@ const curriculumClasses = [
   {
     courseID: 'ETEC 150',
     title: 'Applied Technical Math',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80',
+    image: localImage('etec-150.jpg'),
     description:
       'Use this space for a short summary of the class, its goals, major assignments, and the teaching approach you used.',
   },
   {
     courseID: 'ETEC 141',
     title: 'Microcontrollers and Sensors',
-    image: 'https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=1200&q=80',
+    image: localImage('etec-141.jpg'),
     description:
       'Add a concise explanation of the curriculum structure, assessment design, or any important revisions for this class.',
   },
   {
     courseID: 'ETEC 140',
     title: 'PLCs and Automation',
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
+    image: localImage('etec-140.jpg'),
     description:
       'Reserve this section for a class narrative, evidence of student work, or notes about the learning outcomes.',
   },
   {
     courseID: 'ETEC 139',
     title: 'Class 04',
-    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80',
+    image: localImage('etec-139.jpg'),
     description:
       'Describe the instructional design choices you made and include supporting images or artifacts underneath.',
   },
   {
     courseID: 'ETEC 138',
     title: 'Class 05',
-    image: 'https://images.unsplash.com/photo-1484417894907-623942c8ee29?auto=format&fit=crop&w=1200&q=80',
+    image: localImage('etec-138.jpg'),
     description:
       'Use this panel for a class-by-class reflection, including what changed, why it changed, and what improved.',
   },
   {
     courseID: 'ETEC 137',
     title: 'Class 06',
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80',
+    image: localImage('etec-137.jpg'),
     description:
       'Add curriculum notes, assessment samples, handouts, or any other material that supports the class overview.',
   },
   {
     courseID: 'ETEC 136',
     title: 'Class 07',
-    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80',
+    image: localImage('etec-136.jpg'),
     description:
       'Keep room here for a narrative about sequencing, lesson planning, collaboration, or student engagement.',
   },
   {
     courseID: 'ETEC 135',
     title: 'Class 08',
-    image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80',
+    image: localImage('etec-135.jpg'),
     description:
       'Use the lower part of the card for additional images, screenshots, or curriculum evidence connected to this class.',
   },
   {
     courseID: 'ETEC 134',
     title: 'Class 09',
-    image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=80',
+    image: localImage('etec-134.jpg'),
     description:
       'Add the final class summary here, along with any supporting visuals and documentation you want to highlight.',
   },
@@ -149,7 +147,7 @@ const waveParticles = [
 
 const floatingImageParticles = [
   // Add image paths here to enable floating image particles.
-  // Example: `${import.meta.env.BASE_URL}img/my-photo.jpg`
+  // Example: `${import.meta.env.BASE_URL}images/my-photo.jpg`
 ] as const;
 
 function getCurrentPage(): PageKey {
